@@ -8,12 +8,12 @@ typedef struct peca{ //Um vetor de peças é considerado o tabuleiro
 }peca_t;
 
 struct tabuleiro{
-  peca_t *tab;
+  peca_t **tab; // Vetor de ponteiros de peças (Cada posição recebe um endereço de uma peça)
   int nLinhas, nColunas;
 };
 
 peca_t *create_peca(char tipo, int posX, int posY){
-  peca_t *peca = (peca_t *) malloc(sizeof(peca_t));
+  peca_t *peca = (peca_t *) malloc(sizeof(peca_t ));
 
   peca->tipo = tipo;
   peca->posX = posX;
@@ -22,17 +22,21 @@ peca_t *create_peca(char tipo, int posX, int posY){
   return peca;
 }
 
+// Tabuleiro é composto de um vetor de peças e suas dimensões
 tab_t *create_tabuleiro(int nLinhas, int nColunas){
   tab_t *tabuleiro = (tab_t *) malloc(sizeof(tab_t));
 
-  tabuleiro->tab = (peca_t *) malloc(sizeof(peca_t) * (nLinhas * nColunas));
+  tabuleiro->tab = (peca_t **) malloc(sizeof(peca_t *) * (nLinhas * nColunas));
   tabuleiro->nLinhas = nLinhas;
   tabuleiro->nColunas = nColunas;
 
   return tabuleiro;
 }
 
-void insert_peca(tab_t *tabuleiro, int posX, int posY, char peca){}
+void insert_peca(tab_t *tabuleiro, int posX, int posY, char peca){
+  peca_t *aux = create_peca(peca, posX, posY);
+  tabuleiro[posX * tabuleiro->nLInhas + tabuleiro->nColunas] = peca;
+}
 
 void print_tabuleiro(tab_t *tabuleiro){}
 
