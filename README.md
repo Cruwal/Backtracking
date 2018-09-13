@@ -1,6 +1,10 @@
 # Backtracking
 Trabalho de Algoritmos Avançados
 
+
+* O tabuleiro inicia em (0,0) e termina em (linha-1, coluna-1);
+
+
 * Primeira ideia do backtracking:
 
   * Backtracking(Nº Peças, Jogada){
