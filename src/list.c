@@ -1,4 +1,5 @@
-#include<list.h>
+#include <list.h>
+
 typedef struct no no_t;
 struct no{
 	int repeticoes;//Informa o numero de maneiras diferentes para chegar um unico resultado
@@ -62,7 +63,7 @@ int put(list_t* user, int linha, int coluna, int cedula){
 			}
 		}
 
-		if(atual == NULL){/*Atual chegou no fim, significa que nao houve nenhum NO igual*/	
+		if(atual == NULL){/*Atual chegou no fim, significa que nao houve nenhum NO igual*/
 			new = create_Node( linha, coluna, cedula);
 			ant->prox = new;
 			user->fim = new;

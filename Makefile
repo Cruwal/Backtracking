@@ -1,4 +1,2 @@
-objects= list.c
-
 all:
-	gcc -o exe main.c $(objects) -I.
+	gcc -o exe src/*.c -Iinc/
