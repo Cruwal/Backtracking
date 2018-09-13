@@ -30,24 +30,34 @@ tab_t *create_tabuleiro(int nLinhas, int nColunas){
   tabuleiro->nLinhas = nLinhas;
   tabuleiro->nColunas = nColunas;
 
+  for(int i = 0; i < nLinhas * nColunas; i++)
+    tabuleiro->tab[i] = NULL;
+
   return tabuleiro;
 }
 
 void insert_peca(tab_t *tabuleiro, int posX, int posY, char peca){
   peca_t *aux = create_peca(peca, posX, posY);
-  tabuleiro->tab[posX * tabuleiro->nLinhas + tabuleiro->nColunas] = aux;
+  tabuleiro->tab[posX * tabuleiro->nLinhas + posY] = aux;
 }
 
 void print_tabuleiro(tab_t *my_tab){
   for (int i = 0; i < my_tab->nLinhas * my_tab->nColunas; i++){
     if(i % my_tab->nLinhas == 0) printf("\n");
-    printf("%c ", my_tab->tab[i]->tipo);
+    if(my_tab->tab[i])
+      printf("%c ", my_tab->tab[i]->tipo);
   }
+
+  printf("\n");
 }
 
 // Recebe o endereço do tabuleiro, apaga e marca como NULL
-void *delete_tabuleiro(tab_t **tabuleiro){
-  free(*tabuleiro);
+void *delete_tabuleiro(tab_t **mytab){
+  for(int i = 0; i < (*mytab)->nLinhas * (*mytab)->nColunas; i++)
+    free((*mytab)->tab[i]);
 
-  *tabuleiro = NULL;
+  free((*mytab)->tab);
+  free(*mytab);
+
+  *mytab = NULL;
 }
