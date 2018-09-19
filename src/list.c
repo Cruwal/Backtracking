@@ -50,7 +50,7 @@ int put(list_t* user, int linha, int coluna, int cedula){
 			ant = atual;
 			atual = atual->prox;
 		}
-		if(atual->linha == linha){
+		if(atual != NULL && atual->linha == linha){
 			while(atual != NULL && atual->coluna < coluna){//Desempate por coluna
 				ant = atual;
 				atual = atual->prox;
@@ -92,6 +92,21 @@ list_t* start_List(){
 	user->fim = NULL;
 	user->number = 0;
 	return user;
+}
+
+void printf_List(list_t* lista){
+	no_t* ant = lista->inicio;
+
+	while(ant != NULL){
+		printf("Cedula: %d, Linha: %d, Coluna: %d\n", ant->cedula, ant->linha, ant->coluna);
+		ant = ant->prox;
+	}
+	printf("\n");
+}
+
+
+void printf_Saida(list_t* user){
+	
 }
 
 void free_Function(list_t* f){
